@@ -22,7 +22,7 @@ export type AdminSignup = z.infer<typeof adminSignupInput>;
 export const productSignup = z.object({
     title: z.string(),
     description: z.string(),
-    price: z.string(),
+    price: z.number(),
     category: z.string(),
     brand: z.string(),
     stock: z.number(),

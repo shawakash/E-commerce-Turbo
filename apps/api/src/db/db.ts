@@ -21,7 +21,8 @@ const adminSchema = new mongoose.Schema({
     phone: {
         type: Number,
         required: true
-    }
+    },
+    createdProd: [{type: mongoose.Schema.Types.ObjectId, ref: 'Product'}]
 }, {
     timestamps: true
 });
@@ -52,7 +53,7 @@ const userSchema = new mongoose.Schema({
 });
 
 const productSchema = new mongoose.Schema({
-    title: { type: String, required: true },
+    title: { type: String, required: true, unique: true },
     description: {
         type: String,
         required: true,
@@ -75,7 +76,8 @@ const productSchema = new mongoose.Schema({
     },
     imageUrls: [{
         type: String,
-    }]
+    }],
+    creator: {type: mongoose.Schema.Types.ObjectId, ref: 'Admin'}
 })
 
 const User = mongoose.model("store_user", userSchema);
