@@ -5,7 +5,7 @@ export const userSignupInput = z.object({
     password: z.string().min(4),
     email: z.string().min(5),
     phone: z.number(),
-    address: z.string()
+    address: z.string().optional()
 });
 
 export type UserSignup = z.infer<typeof userSignupInput>;
@@ -46,3 +46,10 @@ export const adminLogin = z.object({
 
 export type adminLogin = z.infer<typeof adminLogin>;
 
+export const legerInput = z.object({
+    quantity: z.number(),
+    address: z.string(),
+    phone: z.number(),
+});
+
+export type legerType = z.infer<typeof legerInput>;

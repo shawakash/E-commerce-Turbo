@@ -48,7 +48,7 @@ const userSchema = new mongoose.Schema({
     address: {
         type: String
     },
-    purchasedProd: [{type: mongoose.Schema.Types.ObjectId, ref: 'Product'}]
+    purchasedProd: [{type: mongoose.Schema.Types.ObjectId, ref: 'Product'}],
 }, {
     timestamps: true
 });
@@ -78,16 +78,29 @@ const productSchema = new mongoose.Schema({
     imageUrls: [{
         type: String,
     }],
-    creator: {type: mongoose.Schema.Types.ObjectId, ref: 'Admin'}
-})
+    creator: {type: mongoose.Schema.Types.ObjectId, ref: 'Admin'},
+    purchaser: [{type: mongoose.Schema.Types.ObjectId, ref: 'User'}]
+});
+
+const purchaseSchema = new mongoose.Schema({
+    product: {type: mongoose.Schema.Types.ObjectId, ref: 'Product', required: true },
+    quantity: {type: Number, required: true},
+    address: {type: String, required: true},
+    phone: {type: Number, required: true},
+    total: {type: Number, required: true},
+    buyer: {type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true},
+    seller: {type: mongoose.Schema.Types.ObjectId, ref: 'Admin', required: true}
+}, {timestamps: true});
 
 const User = mongoose.model("store_user", userSchema);
 const Admin = mongoose.model("store_admin", adminSchema);
 const Product = mongoose.model("product", productSchema);
+const Leger = mongoose.model('store_leger', purchaseSchema);
 
 export {
     User,
     Admin,
     Product,
+    Leger,
     connect
 }
