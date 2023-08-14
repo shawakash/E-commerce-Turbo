@@ -47,7 +47,8 @@ const userSchema = new mongoose.Schema({
     },
     address: {
         type: String
-    }
+    },
+    purchasedProd: [{type: mongoose.Schema.Types.ObjectId, ref: 'Product'}]
 }, {
     timestamps: true
 });

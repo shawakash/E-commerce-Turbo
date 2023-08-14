@@ -75,11 +75,8 @@ route.post('/prod/create', adminAuth, async (req, res) => {
 route.get('/prod/prods', adminAuth, async (req, res) => {
     try {
         const {adminId} = req.headers;
-        const prods = await Product.find({creator: adminId});
-        if(!prods) {
-            return res.status(400).json({message: "No Products"});
-        }
-        return res.status(200).json({message: "Prod found", prods});
+        const admin = await Admin.findById(adminId).populate("createdProd");
+        return res.status(200).json({message: "Prod found", prods: admin?.createdProd});
         
     } catch (error) {
         return res.status(500).json({message: "Internal Error", err: error});
