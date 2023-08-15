@@ -39,7 +39,7 @@ export const SignupPage: React.FC = () => {
             if(err) {
                 if(err.status == 500) {
                     toast.error('Internal Server Error');
-                    navigate('/login');
+                    navigate('/admin/login');
                     return;
                 }
                 toast.error(err.message);

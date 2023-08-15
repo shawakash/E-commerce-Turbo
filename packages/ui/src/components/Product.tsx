@@ -1,7 +1,7 @@
 import { productType } from 'common'
 import React from 'react'
 
-export const Product: React.FC<{product: productType, client: string, handleDelete: () => void}> = ({ product, client = 'admin', handleDelete }) => {
+export const Product: React.FC<{product: productType, client: string, handleDelete?: () => void}> = ({ product, client = 'admin', handleDelete }) => {
 
   return (
     <>

@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 
 export const ProdCard: React.FC<{ product: productType, client: string }> = ({ product, client = 'admin' }) => {
     return (
-        <Link to={`/admin/prod/${product._id}`}>
+        <Link to={`/${client}/prod/${product._id}`}>
             <div className="bg-white rounded-lg w-[500px] shadow-md p-6 hover:shadow-2xl transition-all">
                 <div className="flex items-center w-56 justify-center mb-4">
                     <img

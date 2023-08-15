@@ -1,20 +1,19 @@
 import axios from 'axios';
-import { UserLogin, adminLogin } from 'common';
+import { UserSignup } from 'common'
 import * as React from 'react'
 import { toast } from 'react-hot-toast';
 import { useNavigate } from 'react-router-dom';
-import { LoginForm } from 'ui';
-import { baseURL } from './SignupPage';
-import { useRecoilValueLoadable } from 'recoil';
-import { getProds } from '../store/atom';
+import { SignUpForm } from 'ui';
 
-export const LoginPage: React.FC = () => {
+export const baseURL = 'http://localhost:5001';
+
+export const SignupPage: React.FC = () => {
     const navigate = useNavigate();
     // const setLoader = useSetRecoilState(loadingState);
 
-    const [data, setData] = React.useState<adminLogin>();
+    const [data, setData] = React.useState<UserSignup>();
 
-    const handleData = (d: adminLogin) => {
+    const handleData = (d: UserSignup) => {
         setData(d);
     };
 
@@ -22,28 +21,25 @@ export const LoginPage: React.FC = () => {
         // setLoader(true);
         axios({
             baseURL: baseURL,
-            url: '/admin/login',
+            url: '/user/signup',
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
             },
             data: data
         }).then(response => {
-            sessionStorage.setItem('adminToken', response.data.token);
+            sessionStorage.setItem('userToken', response.data.token);
             toast.success(response.data.message);
             // setLoader(false);
-            console.log('hola')
-            navigate("/admin/prods");
-
+            navigate("/");
             return;
         }).catch(err => {
             if(err) {
                 if(err.status == 500) {
                     toast.error('Internal Server Error');
-                    navigate('/admin/login');
+                    navigate('/user/login');
                     return;
                 }
-                console.log('from here')
                 toast.error(err.message);
                 // setLoader(false);
                 return;
@@ -67,10 +63,8 @@ export const LoginPage: React.FC = () => {
   return (
     <>
         <div className="flex justify-center items-center h-screen bg-gray-100">
-            <LoginForm url={'/admin/login'} propData={handleData} />
+            <SignUpForm url={'/user/signup'} propData={handleData}/>
         </div>
     </>
   )
 }
-
-export default LoginPage

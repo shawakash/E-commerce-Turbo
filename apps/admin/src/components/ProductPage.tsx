@@ -15,23 +15,10 @@ const ProductPage: React.FC = () => {
   const [product, setProduct] = React.useState<productType>();
 
   React.useEffect(() => {
-    React.startTransition(() => {
-
-      axios({
-        baseURL: baseURL,
-        url: `/admin/prod/${prodId}`,
-        method: "GET",
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': sessionStorage.getItem('adminToken')
+    const prod = prods.find((p: productType) => p._id == prodId);
+        if (prod) {
+            setProduct(prod);
         }
-      }).then(response => {
-        setProduct(response.data.prod);
-      }).catch(err => {
-        toast.error(err.message);
-        navigate(-1);
-      })
-    })
   }, []);
 
   const handleUpdate = (req: productType) => {
@@ -52,6 +39,7 @@ const ProductPage: React.FC = () => {
           findProd = req;
           return pre;
         });
+        setProduct(req);
         toast.success(response.data.message);
       }).catch(err => {
         if (err) {
@@ -103,9 +91,9 @@ const ProductPage: React.FC = () => {
 
   return (
     <>
-      <div className="flex flex-row">
-        <Product product={product} client={'admin'} />
-        <UpdateForm propData={handleUpdate} product={product} handleDelete={handleDelete} />
+      <div className="flex flex-row bg-gray-100 justify-around h-screen items-center">
+        {product && Object.keys(product).length > 0 && <Product product={product} client={'admin'} />}
+        {product && Object.keys(product).length > 0 && <UpdateForm propData={handleUpdate} product={product} handleDelete={handleDelete} />}
         {/* Analytics goes here */}
       </div>
     </>

@@ -25,7 +25,7 @@ function App() {
             <Route path="/admin" />
             <Route path="/admin/prods" element={<Prods />}/>
             <Route path="/admin/prod/create" element={<ProdCreate />} />
-            <Route path="/admin/prod/:prodId" element={<ErrorBoundary><ProductPage /></ErrorBoundary>} />
+            <Route path="/admin/prod/:prodId" element={<ProductPage />} />
           </Route>
           <Route path="*" element={<NotFoundPage />}/>
         </Routes>

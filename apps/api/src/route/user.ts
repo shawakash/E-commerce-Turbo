@@ -31,6 +31,29 @@ const userAuth = (req: Request, res: Response, next: NextFunction) => {
     }
 }
 
+route.post('/auth', (req, res) => {
+    try {
+        let {authorization} = req.headers;
+        if(!authorization) {
+            return res.status(401).json({message: 'Unauthorized'});
+        }
+        if(authorization.startsWith("Bearer")) {
+            authorization = authorization.split(" ")[1];
+        }
+        jwt.verify(authorization, UserSecretKey, (err, decoded) => {
+            if(err) {
+                return res.status(401).json({message: "Unauthorized", status: false});
+            }
+            if(!decoded || typeof decoded == 'string' || !decoded._id) {
+                return res.status(401).json({message: "Unauthorized", status: false});
+            }
+            req.headers["userId"] = decoded._id;
+            return res.status(200).json({message: 'Authorized', status: true});
+        })
+    } catch (error) {
+        return res.status(500).json({message: "Internal Error", err: error});
+    }
+});
 
 route.post('/signup', async (req, res) => {
     try {
