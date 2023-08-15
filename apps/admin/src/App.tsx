@@ -8,7 +8,8 @@ import ProtectRoute from "./components/ProtectRoute";
 import { Nav, NotFoundPage } from "ui";
 import ProdCreate from "./components/ProdCreate";
 import { Prods } from "./components/Prods";
-import { ProductPage } from "./components/ProductPage";
+import ProductPage from "./components/ProductPage";
+import ErrorBoundary from "./components/Error";
 
 function App() {
   return (
@@ -24,7 +25,7 @@ function App() {
             <Route path="/admin" />
             <Route path="/admin/prods" element={<Prods />}/>
             <Route path="/admin/prod/create" element={<ProdCreate />} />
-            <Route path="/admin/prod/:prodId" element={<ProductPage />} />
+            <Route path="/admin/prod/:prodId" element={<ErrorBoundary><ProductPage /></ErrorBoundary>} />
           </Route>
           <Route path="*" element={<NotFoundPage />}/>
         </Routes>

@@ -122,7 +122,7 @@ route.get('/prod/:prodId', adminAuth, async (req, res) => {
     }
 });
 
-route.post('/prod/:prodId', adminAuth, async (req, res) => {
+route.put('/prod/:prodId', adminAuth, async (req, res) => {
     try {
         const parsedInput = productSignup.safeParse(req.body);
         if(!parsedInput.success) {

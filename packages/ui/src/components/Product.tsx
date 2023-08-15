@@ -1,7 +1,7 @@
 import { productType } from 'common'
 import React from 'react'
 
-export const Product: React.FC<{product: productType, client: string}> = ({ product, client = 'admin' }) => {
+export const Product: React.FC<{product: productType, client: string, handleDelete: () => void}> = ({ product, client = 'admin', handleDelete }) => {
 
   return (
     <>
@@ -25,6 +25,9 @@ export const Product: React.FC<{product: productType, client: string}> = ({ prod
                 </div>
                 {client == 'user' && <button className="bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600 duration-300 w-fit hover:scale-105 active:scale-95 transition-all">
                     Add to Cart
+                </button>}
+                {client == 'admin' && <button onClick={handleDelete} className="bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600 duration-300 w-fit hover:scale-105 active:scale-95 transition-all">
+                    Delete Product
                 </button>}
             </div>
     </>
