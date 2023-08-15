@@ -3,8 +3,8 @@ import { UserLogin, adminLogin } from 'common';
 import * as React from 'react'
 import { toast } from 'react-hot-toast';
 import { useNavigate } from 'react-router-dom';
-import { baseURL } from 'store/dist/index';
 import { LoginForm } from 'ui';
+import { baseURL } from './SignupPage';
 
 export const LoginPage: React.FC = () => {
     const navigate = useNavigate();
