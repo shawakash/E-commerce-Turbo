@@ -4,7 +4,7 @@ import * as React from 'react'
 import { toast } from 'react-hot-toast';
 import { useNavigate } from 'react-router-dom';
 import { useSetRecoilState } from 'recoil';
-import { loadingState } from 'store';
+// import { loadingState } from 'store';
 import { SignUpForm } from 'ui';
 
 export const baseURL = 'http://localhost:5001';

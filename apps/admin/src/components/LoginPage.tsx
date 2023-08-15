@@ -30,7 +30,7 @@ export const LoginPage: React.FC = () => {
             sessionStorage.setItem('adminToken', response.data.token);
             toast.success(response.data.message);
             // setLoader(false);
-            navigate("/");
+            navigate("/admin/prods");
             return;
         }).catch(err => {
             if(err) {

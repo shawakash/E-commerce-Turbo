@@ -27,7 +27,8 @@ export const productSignup = z.object({
     category: z.string(),
     brand: z.string(),
     stock: z.number(),
-    imageUrls: z.array(z.string())
+    imageUrls: z.array(z.string()),
+    _id: z.string().optional()
 });
 
 export type productType = z.infer<typeof productSignup>;

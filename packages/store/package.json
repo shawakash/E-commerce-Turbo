@@ -7,7 +7,6 @@
   "files": [
     "dist/**"
   ],
-  
   "scripts": {
     "build": "tsc",
     "clean": "rm -rf .turbo && rm -rf node_modules && rm -rf dist",
@@ -15,6 +14,7 @@
     "lint": "eslint \"src/**/*.ts*\"",
     "test": "jest"
   },
+  "license": "MIT",
   "dependencies": {
     "recoil": "^0.7.7"
   }

@@ -16,7 +16,7 @@ export const NotFoundPage: React.FC = () => {
         </div>
         <div className="mt-6 flex justify-center">
           <Link
-            to={'/admin/signup'}
+            to={'/admin/'}
             className="px-4 py-2 bg-red-600 text-white rounded-md hover:bg-red-700 transition duration-300"
           >
             Go Back Home

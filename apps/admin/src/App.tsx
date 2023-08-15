@@ -5,21 +5,24 @@ import { Toaster } from "react-hot-toast";
 import { SignupPage } from "./components/SignupPage";
 import LoginPage from "./components/LoginPage";
 import ProtectRoute from "./components/ProtectRoute";
-import { NotFoundPage } from "ui";
+import { Nav, NotFoundPage } from "ui";
+import ProdCreate from "./components/ProdCreate";
+import { Prods } from "./components/Prods";
 
 function App() {
   return (
     <>
       <Toaster />
       <Router>
+        <Nav client={'admin'} />
         <Routes>
           <Route path="/admin/signup" element={<SignupPage />} />
           <Route path="/admin/login" element={<LoginPage />} />
           <Route element={<ProtectRoute />}>
+            <Route path="/" />
             <Route path="/admin" />
-            <Route path="/admin/prod/create" />
-            <Route path="/admin/prods" />
-            <Route path="/admin/prod/:prodId" />
+            <Route path="/admin/prods" element={<Prods />}/>
+            <Route path="/admin/prod/create" element={<ProdCreate />} />
             <Route path="/admin/prod/:prodId" />
           </Route>
           <Route path="*" element={<NotFoundPage />}/>

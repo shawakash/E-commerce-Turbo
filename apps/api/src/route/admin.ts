@@ -3,6 +3,8 @@ import express from 'express';
 import { Admin, Product } from '../db/db';
 import jwt from 'jsonwebtoken';
 import { adminAuth } from '../middleware/auth';
+import { log } from 'logger';
+import path from 'path';
 const route = express.Router();
 
 export const AdminSecretKey = "kdjnk";
@@ -98,8 +100,8 @@ route.post('/prod/create', adminAuth, async (req, res) => {
 route.get('/prod/prods', adminAuth, async (req, res) => {
     try {
         const {adminId} = req.headers;
-        const admin = await Admin.findById(adminId).populate("createdProd");
-        return res.status(200).json({message: "Prod found", prods: admin?.createdProd});
+        const prod = await Product.find({ creator: adminId });
+        return res.status(200).json({message: "Prod found", prods: prod});
         
     } catch (error) {
         return res.status(500).json({message: "Internal Error", err: error});
