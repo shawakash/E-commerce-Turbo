@@ -23,7 +23,7 @@ const ProtectRoute: React.FC = () => {
             if(err) {
                 if(err.response && !err.response.data.status) {
                     toast.error('Session Expired. Please Login');
-                    navigate('/login');
+                    navigate('/admin/login');
                     return;
                 }
             }

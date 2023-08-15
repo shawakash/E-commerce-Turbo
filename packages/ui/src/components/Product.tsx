@@ -1,11 +1,11 @@
-import { productType } from 'common';
-import React from 'react';
-import { Link } from 'react-router-dom';
+import { productType } from 'common'
+import React from 'react'
 
-export const ProdCard: React.FC<{ product: productType, client: string }> = ({ product, client = 'admin' }) => {
-    return (
-        <Link to={`/admin/prod/${product._id}`}>
-            <div className="bg-white rounded-lg w-[500px] shadow-md p-6 hover:shadow-2xl transition-all">
+export const Product: React.FC<{product: productType, client: string}> = ({ product, client = 'admin' }) => {
+
+  return (
+    <>
+        <div className="bg-white rounded-lg w-1/2 shadow-md p-6 hover:shadow-2xl transition-all">
                 <div className="flex items-center w-56 justify-center mb-4">
                     <img
                         src={product.imageUrls[0]}
@@ -14,7 +14,7 @@ export const ProdCard: React.FC<{ product: productType, client: string }> = ({ p
                     />
                 </div>
                 <h2 className="text-xl font-semibold mb-2">{product.title}</h2>
-                <p className="text-gray-600 mb-2 line-clamp-3">{product.description}</p>
+                <p className="text-gray-600 mb-2">{product.description}</p>
                 <div className="mb-2 flex justify-between">
                     <p className="text-lg font-semibold text-blue-600">${product.price}</p>
                     <p className="text-gray-500">In Stock: {product.stock}</p>
@@ -27,7 +27,6 @@ export const ProdCard: React.FC<{ product: productType, client: string }> = ({ p
                     Add to Cart
                 </button>}
             </div>
-        </Link>
-    );
-};
-
+    </>
+  )
+}

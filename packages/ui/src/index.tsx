@@ -7,3 +7,4 @@ export { NotFoundPage } from './components/NotFoundPage';
 export { ProdCreateForm } from './components/ProdCreateForm';
 export { ProdCard } from './components/ProdCard';
 export {Nav} from './components/Nav'
+export {Product} from './components/Product'

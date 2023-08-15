@@ -1,7 +1,7 @@
 import { productType } from 'common';
 import React, { FormEvent, useRef } from 'react'
 
-export const ProdCreateForm: React.FC<{ propData: (data: productType) => void }> = ({propData}) => {
+export const ProdCreateForm: React.FC<{ propData: (data: productType) => void, clean: boolean }> = ({propData, clean = true}) => {
 
     const titleRef = useRef<HTMLInputElement | null>(null);
     const descRef = useRef<HTMLTextAreaElement | null>(null);
@@ -42,13 +42,15 @@ export const ProdCreateForm: React.FC<{ propData: (data: productType) => void }>
                     imageUrls: [imageUrlRef.current.value]
                 }
                 propData(data);
-                titleRef.current.value = '';
-                descRef.current.value = '';
-                priceRef.current.value = '';
-                stockRef.current.value = '';
-                catRef.current.value = '';
-                brandRef.current.value = '';
-                imageUrlRef.current.value = '';
+                if(clean) {
+                    titleRef.current.value = '';
+                    descRef.current.value = '';
+                    priceRef.current.value = '';
+                    stockRef.current.value = '';
+                    catRef.current.value = '';
+                    brandRef.current.value = '';
+                    imageUrlRef.current.value = '';
+                }
                 
             }
         }

@@ -10,27 +10,24 @@ import { useNavigate } from 'react-router-dom'
 
 const ProdCreate: React.FC = () => {
 
-    const navigate = useNavigate()
-    const [data, setData] = React.useState<productType>();
+    const navigate = useNavigate();
+    const [clean, setClean] = React.useState<boolean>(false);
     const setAllProds = useSetRecoilState(allProd);
-
     const handleData = (req: productType) => {
-        setData(req)
-    }
-    const request = () => {
+    
         axios({
             baseURL: baseURL,
             url: '/admin/prod/create',
             method: "POST",
-            data: data,
+            data: req,
             headers: {
                 "Content-Type": "application/json",
                 "Authorization": sessionStorage.getItem('adminToken')
             }
         }).then(response => {
-            // @ts-ignore
-            setAllProds((pre) => [...pre, data]);
+            setAllProds((pre: productType[]) => [...pre, req]);
             toast.success(response.data.message);
+            setClean(true);
             navigate('/admin/prods');
         }).catch(err => {
             if(err) {
@@ -38,19 +35,17 @@ const ProdCreate: React.FC = () => {
                     toast.error(err.response.data.message);
                     return;
                 }
+                console.log('from here')
+                console.log(err)
                 toast.error(err.message);
             }
         })
     }
-    React.useEffect(() => {
-        if(data) {
-            request();
-        }
-    }, [data])
+    
     return (
         <>
             <div className="min-h-screen flex items-center justify-center bg-gray-100">
-                <ProdCreateForm propData={handleData} />
+                <ProdCreateForm propData={handleData} clean={clean} />
             </div>
         </>
     )

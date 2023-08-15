@@ -5,6 +5,8 @@ import { toast } from 'react-hot-toast';
 import { useNavigate } from 'react-router-dom';
 import { LoginForm } from 'ui';
 import { baseURL } from './SignupPage';
+import { useRecoilValueLoadable } from 'recoil';
+import { getProds } from '../store/atom';
 
 export const LoginPage: React.FC = () => {
     const navigate = useNavigate();
@@ -30,7 +32,9 @@ export const LoginPage: React.FC = () => {
             sessionStorage.setItem('adminToken', response.data.token);
             toast.success(response.data.message);
             // setLoader(false);
+            console.log('hola')
             navigate("/admin/prods");
+
             return;
         }).catch(err => {
             if(err) {
@@ -39,6 +43,7 @@ export const LoginPage: React.FC = () => {
                     navigate('/login');
                     return;
                 }
+                console.log('from here')
                 toast.error(err.message);
                 // setLoader(false);
                 return;

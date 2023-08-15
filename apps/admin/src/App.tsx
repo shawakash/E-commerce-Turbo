@@ -8,6 +8,7 @@ import ProtectRoute from "./components/ProtectRoute";
 import { Nav, NotFoundPage } from "ui";
 import ProdCreate from "./components/ProdCreate";
 import { Prods } from "./components/Prods";
+import { ProductPage } from "./components/ProductPage";
 
 function App() {
   return (
@@ -23,7 +24,7 @@ function App() {
             <Route path="/admin" />
             <Route path="/admin/prods" element={<Prods />}/>
             <Route path="/admin/prod/create" element={<ProdCreate />} />
-            <Route path="/admin/prod/:prodId" />
+            <Route path="/admin/prod/:prodId" element={<ProductPage />} />
           </Route>
           <Route path="*" element={<NotFoundPage />}/>
         </Routes>
