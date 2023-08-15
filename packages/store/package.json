@@ -1,0 +1,21 @@
+{
+  "name": "store",
+  "version": "1.0.0",
+  "main": "./dist/index.js",
+  "source": "./src/index.ts",
+  "types": "./dist/index.d.ts",
+  "files": [
+    "dist/**"
+  ],
+  
+  "scripts": {
+    "build": "tsc",
+    "clean": "rm -rf .turbo && rm -rf node_modules && rm -rf dist",
+    "dev": "tsc -w",
+    "lint": "eslint \"src/**/*.ts*\"",
+    "test": "jest"
+  },
+  "dependencies": {
+    "recoil": "^0.7.7"
+  }
+}

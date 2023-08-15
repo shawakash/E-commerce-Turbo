@@ -1,21 +1,27 @@
 import * as React from "react";
 import "./App.css";
-import { CounterButton, NewTabLink } from "ui";
+import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
+import { Toaster } from "react-hot-toast";
+import { SignupPage } from "./components/SignupPage";
+import LoginPage from "./components/LoginPage";
 
 function App() {
   return (
-    <div className="container">
-      <h1 className="title">
-        Admin <br />
-        <span>Kitchen Sink</span>
-      </h1>
-      <CounterButton />
-      <p className="description">
-        Built With{" "}
-        <NewTabLink href="https://turbo.build/repo">Turborepo</NewTabLink> +{" "}
-        <NewTabLink href="https://vitejs.dev/">Vite</NewTabLink>
-      </p>
-    </div>
+    <>
+      <Toaster />
+      <Router>
+        <Routes>
+          <Route path="/admin/signup" element={<SignupPage />}/>
+          <Route path="/admin/login" element={<LoginPage /> } />
+          <Route path="/admin" />
+          <Route path="/admin/prod/create" />
+          <Route path="/admin/prods" />
+          <Route path="/admin/prod/:prodId" />
+          <Route path="/admin/prod/:prodId" />
+          <Route path="*" />
+        </Routes>
+      </Router>
+    </>
   );
 }
 

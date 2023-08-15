@@ -34,6 +34,9 @@
     "typescript": "^4.8.3"
   },
   "dependencies": {
-    "react-dom": "^18.2.0"
+    "common": "*",
+    "react-dom": "^18.2.0",
+    "react-router-dom": "^6.15.0",
+    "store": "*"
   }
 }

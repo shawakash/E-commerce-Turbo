@@ -10,16 +10,24 @@
     "lint": "tsc --noEmit && eslint \"src/**/*.ts*\""
   },
   "dependencies": {
+    "axios": "^1.4.0",
+    "common": "*",
+    "store": "*",
+    "ui": "*",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "ui": "*"
+    "react-hot-toast": "^2.4.1",
+    "react-router-dom": "^6.15.0",
+    "recoil": "^0.7.7"
   },
   "devDependencies": {
     "@types/react": "^18.2.0",
     "@types/react-dom": "^18.2.0",
     "@vitejs/plugin-react": "^2.1.0",
+    "autoprefixer": "^10.4.15",
     "eslint": "^7.32.0",
     "eslint-config-custom": "*",
+    "tailwindcss": "^3.3.3",
     "tsconfig": "*",
     "typescript": "^4.8.3",
     "vite": "^3.1.0"
