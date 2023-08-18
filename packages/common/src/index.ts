@@ -54,4 +54,17 @@ export const legerInput = z.object({
     phone: z.number(),
 });
 
-export type legerType = z.infer<typeof legerInput>;
+export type legerInputType = z.infer<typeof legerInput>;
+
+export const legerOutput = z.object({
+    product: productSignup,
+    quantity: z.number(),
+    address: z.string(),
+    phone: z.number(),
+    total: z.number(),
+    buyer: userSignupInput,
+    seller: adminSignupInput,
+    _id: z.string()
+});
+
+export type legerType = z.infer<typeof legerOutput>;

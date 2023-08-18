@@ -29,7 +29,7 @@ export const getlegers = selector({
     get: async () => {
         const response = await axios({
             baseURL: baseURL,
-            url: '/user/prod/purchased',
+            url: '/user/purchased',
             method: "GET",
             headers: {
                 'Content-Type': 'application/json',

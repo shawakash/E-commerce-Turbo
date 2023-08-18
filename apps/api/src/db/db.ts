@@ -78,12 +78,12 @@ const productSchema = new mongoose.Schema({
     imageUrls: [{
         type: String,
     }],
-    creator: {type: mongoose.Schema.Types.ObjectId, ref: 'Admin'},
-    purchaser: [{type: mongoose.Schema.Types.ObjectId, ref: 'User'}]
+    creator: {type: mongoose.Schema.Types.ObjectId, ref: 'store_admin'},
+    purchaser: [{type: mongoose.Schema.Types.ObjectId, ref: 'store_user'}]
 });
 
 const purchaseSchema = new mongoose.Schema({
-    product: {type: mongoose.Schema.Types.ObjectId, ref: 'Product', required: true },
+    product: {type: mongoose.Schema.Types.ObjectId, ref: 'product', required: true },
     quantity: {type: Number, required: true},
     address: {type: String, required: true},
     phone: {type: Number, required: true},

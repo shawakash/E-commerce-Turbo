@@ -27,7 +27,7 @@ const userAuth = (req: Request, res: Response, next: NextFunction) => {
             next();
         })
     } catch (error) {
-        return res.status(500).json({ message: "Internal Error", err: error });
+        return res.status(500).json({ message: "Internal Error from auth", err: error });
     }
 }
 
@@ -139,23 +139,27 @@ route.post('/prod/:prodId', userAuth, async (req, res) => {
         await userData.save();
         const total = parsedInput.data.quantity * prod.price;
         const leger = new Leger({...parsedInput.data, product: prod._id, total, buyer: userId, seller: prod.creator});
-        await leger.save();
+        (await leger.save()).populate('product');
         return res.status(200).json({ message: 'Product purchased successfully', leger });
     } else {
         return res.status(500).json({ message: "Internal Server Error" });
     }
 });
 
-route.get('/prod/purchased', userAuth, async (req, res) => {
-    try {
-        log("userId");
+route.get('/purchased', userAuth, async (req, res) => {
         const { userId } = req.headers;
-        const data = await Leger.find({buyer: userId}).populate("product");
+        const data = await Leger.find({buyer: userId}).populate('product');
         return res.status(200).json({ purchasedProd: data });
-    } catch (error) {
-        return res.status(500).json({ message: "Internal Server Error" });
-    }
 });
+
+route.delete('/purchased/:legerId', userAuth, async (req, res) => {
+    const { legerId } = req.params;
+    const leger = await Leger.findByIdAndDelete(legerId);
+    if(!leger) {
+        return res.status(404).json({ message: 'No such Leger' });
+    }
+    return res.status(200).json({ message: 'Leger Deleted' });
+})
 
 export default route;
 

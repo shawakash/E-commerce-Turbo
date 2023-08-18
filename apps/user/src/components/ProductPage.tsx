@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 import { useRecoilValue, useSetRecoilState } from 'recoil';
 import { allLegers, allProd } from '../store/atom';
-import { legerType, productType } from 'common';
+import { legerInputType, legerType, productType } from 'common';
 import { Product, PurchaseForm } from 'ui';
 import axios from 'axios';
 import { baseURL } from './SignupPage';
@@ -23,7 +23,7 @@ export const ProductPage: React.FC = () => {
         }
     }, []);
 
-    const handlePurchase = (leger: legerType) => {
+    const handlePurchase = (leger: legerInputType) => {
         axios({
             baseURL: baseURL,
             url: `/user/prod/${prodId}`,
@@ -34,6 +34,7 @@ export const ProductPage: React.FC = () => {
                 'Authorization': sessionStorage.getItem('userToken')
             }
         }).then(response => {
+            console.log(response.data.leger)
             setLeger((leg: legerType[]) => [...leg, response.data.leger]);
             toast.success(response.data.message);
             navigate('/user/prod/purchase')
@@ -44,7 +45,7 @@ export const ProductPage: React.FC = () => {
                 navigate('/user/login');
                 return;
             }
-            console.log(err)
+            console.log(err, 'from here');
             toast.error(err.message);
             // setLoader(false);
             return;

@@ -12,7 +12,7 @@ export const Prods: React.FC = () => {
 
     return (
         <>
-            {prods.state == 'hasValue' &&  <div className="min-h-screen flex items-center gap-10 flex-wrap justify-center bg-gray-100">
+            {prods.state == 'hasValue' &&  <div className="min-h-screen py-6 flex items-center gap-10 flex-wrap justify-center bg-gray-100">
                 {prods &&
                     prods.contents.map((prod: productType) =>
                         <ProdCard key={prod._id} product={prod} client='user' />

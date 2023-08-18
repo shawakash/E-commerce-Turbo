@@ -9,4 +9,6 @@ export { ProdCard } from './components/ProdCard';
 export {Nav} from './components/Nav'
 export {Product} from './components/Product'
 export { UpdateForm } from "./components/UpdateForm";
-export { PurchaseForm } from './components/PurchaseForm'
+export { PurchaseForm } from './components/PurchaseForm';
+export { LegerCard } from './components/LegerCard';
+export { Footer } from './components/Footer'

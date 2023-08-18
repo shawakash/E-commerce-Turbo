@@ -1,7 +1,7 @@
-import { legerType, productType } from 'common';
+import { legerInputType, legerType, productType } from 'common';
 import React, { FormEvent, useRef, useState } from 'react'
 
-export const PurchaseForm: React.FC<{ propData: (data: legerType) => void, product: productType}> = ({ propData, product }) => {
+export const PurchaseForm: React.FC<{ propData: (data: legerInputType) => void, product: productType}> = ({ propData, product }) => {
 
     const addressRef = useRef<HTMLTextAreaElement | null>(null);
     const phoneRef = useRef<HTMLInputElement | null>(null);
@@ -21,7 +21,7 @@ export const PurchaseForm: React.FC<{ propData: (data: legerType) => void, produ
                 phoneRef.current.value !== null &&
                 quantityRef.current.value !== null
             ) {
-                const data: legerType = {
+                const data: legerInputType = {
                     phone: parseInt(phoneRef.current.value),
                     address: addressRef.current.value,
                     quantity: parseInt(quantityRef.current.value)

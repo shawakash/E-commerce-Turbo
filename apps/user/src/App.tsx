@@ -2,7 +2,7 @@ import * as React from "react";
 import "./App.css";
 import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
 import { Toaster } from "react-hot-toast";
-import { Nav, NotFoundPage } from "ui";
+import { Footer, Nav, NotFoundPage } from "ui";
 import ProtectRoute from "./components/ProtectRoute";
 import { SignupPage } from "./components/SignupPage";
 import LoginPage from "./components/LoginPage";
@@ -31,6 +31,7 @@ const App: React.FC = () => {
           </Route>
           <Route path="*" element={<NotFoundPage />}/>
         </Routes>
+        <Footer/ >
       </Router>
     </>
   )

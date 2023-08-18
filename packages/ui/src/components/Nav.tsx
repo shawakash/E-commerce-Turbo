@@ -1,7 +1,7 @@
 import React from 'react'
 import { useEffect } from 'react'
 import { useState } from 'react'
-import { Link, useNavigate } from 'react-router-dom'
+import { Link, NavLink, useNavigate } from 'react-router-dom'
 
 export const Nav: React.FC<{client: string}> = ({ client }) => {
     const navigate = useNavigate()
@@ -20,7 +20,7 @@ export const Nav: React.FC<{client: string}> = ({ client }) => {
             <header className="bg-white shadow-md py-4 sticky top-0 opacity-90">
                 <div className="container mx-auto px-4">
                     <nav className="flex items-center justify-between">
-                        <div className="text-lg font-semibold">E-Commerce App</div>
+                        <NavLink to={'/'}><div className="text-xl font-semibold">Vastram</div></NavLink>
                         <ul className="flex space-x-8">
                                 <Link to={"/"}><li className="hover:text-blue-500 cursor-pointer transition-all hover:scale-125 active:scale-95">Home</li></Link>
                                 <Link to={`/${client}/prods`}><li className="hover:text-blue-500 cursor-pointer transition-all hover:scale-125 active:scale-95">Products</li></Link>
