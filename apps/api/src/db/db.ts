@@ -1,7 +1,7 @@
 import mongoose from "mongoose";
 
 const connect = () => {
-    mongoose.connect(`mongodb+srv://admin-akash:220104008@cluster0.kcycili.mongodb.net/`, { dbName: 'ecommerce' });
+    mongoose.connect(`mongodb+srv://admin-akash:${process.env.MONGO_PASS}@cluster0.kcycili.mongodb.net/`, { dbName: 'ecommerce' });
 }
 
 const adminSchema = new mongoose.Schema({
